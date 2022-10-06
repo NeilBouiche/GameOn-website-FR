@@ -35,10 +35,10 @@ img {
   margin: 3.5%;
 }
 .header-logo {
-    float: left;
+  float: left;
 }
 .main-navbar {
-    float: right;
+  float: right;
 }
 .topnav a {
   float: left;
@@ -69,7 +69,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav a {display: none;}
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
@@ -77,7 +79,9 @@ img {
 }
 
 @media screen and (max-width: 768px) {
-  .topnav.responsive {position: relative;}
+  .topnav.responsive {
+    position: relative;
+  }
   .topnav.responsive .icon {
     position: absolute;
     right: 0;
@@ -90,16 +94,16 @@ img {
   }
 }
 
-
-
- @media screen and (max-width: 540px) {
-  .topnav a {display: none;}
+@media screen and (max-width: 540px) {
+  .topnav a {
+    display: none;
+  }
   .topnav a.icon {
     float: right;
     display: block;
     margin-top: -15px;
   }
-} 
+}
 
 main {
   font-size: 130%;
@@ -111,8 +115,6 @@ main {
   margin: 1px 20px 15px;
   border-radius: 2rem;
   text-align: justify;
-
-
 }
 
 .modal-btn {
@@ -186,6 +188,44 @@ main {
 .modal-body {
   padding: 15px 8%;
   margin: 15px auto;
+}
+
+#form-success-message-box {
+  display: none;
+}
+
+#form-success-message-text {
+  text-align: center;
+  margin: 10%;
+}
+
+small {
+  font-size: 15px;
+}
+
+@keyframes wiggle {
+  0% {
+    transform: translate(2px, 0px);
+  }
+  20% {
+    transform: translate(-2px, 0px);
+  }
+  40% {
+    transform: translate(2px, 0px);
+  }
+  60% {
+    transform: translate(-2px, 0px);
+  }
+  80% {
+    transform: translate(2px, 0px);
+  }
+}
+
+.btn-submit {
+  animation-name: wiggle;
+  animation-duration: 2500ms;
+  transform-origin: 50% 50%;
+  animation-iteration-count: infinite;
 }
 
 label {
@@ -526,4 +566,3 @@ footer {
     opacity: 1;
   }
 }
-

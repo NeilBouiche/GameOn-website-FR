@@ -129,7 +129,7 @@ function conditionVerification() {
   }
 }
 
-function validate(event) {
+function displayMessage() {
   if (
     firstVerification() &&
     lastVerification() &&
@@ -139,8 +139,14 @@ function validate(event) {
     radioVerification() &&
     conditionVerification() === true
   ) {
+    document.getElementById("box-hidder").style.display = "none";
+    document.getElementById("form-success-message-box").style.display = "block";
+    return true;
+  }
+}
+
+function validate(event) {
+  if (displayMessage() == true) {
     event.currentTarget.submit();
-  } else {
-    event.preventDefault();
   }
 }
