@@ -37,98 +37,86 @@ const date = document.getElementById("birthdate");
 const quantity = document.getElementById("quantity");
 const radio = document.querySelectorAll("input[type=radio]");
 const conditionBox = document.getElementById("checkbox1");
+const errorMessage = document.createElement("small");
+
+//error message function
+function errMssg(sentance, formDataNumber) {
+  errorMessage.innerHTML = "</br>" + sentance;
+  errorMessage.style.color = "red";
+  formData[formDataNumber].appendChild(errorMessage);
+}
 
 // input verification ----------------------------------------------------------
 
-//name input
+//fonction pour verifier le prenom
 function firstVerification() {
   if (firstName.value.length < 2) {
-    const errorMessage = document.createElement("small");
-    errorMessage.innerHTML =
-      "</br> Veuillez entrer 2 caractères ou plus pour le champ du prénom.";
-    errorMessage.style.color = "red";
-    formData[0].appendChild(errorMessage);
+    errMssg("Veuillez entrer 2 caractères ou plus pour le champ du nom.", 0);
   } else {
     return true;
   }
 }
 
+//fonction pour verifier le nom de famille
 function lastVerification() {
   if (lastName.value.length < 2) {
-    const errorMessage = document.createElement("small");
-    errorMessage.innerHTML =
-      "</br> Veuillez entrer 2 caractères ou plus pour le champ du nom.";
-    errorMessage.style.color = "red";
-    formData[1].appendChild(errorMessage);
+    errMssg("Veuillez entrer 2 caractères ou plus pour le champ du nom.", 1);
   } else {
     return true;
   }
 }
 
+//fonction pour verifier le mail.
 function emailVerification() {
   if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email.value)) {
     return true;
   } else {
-    const errorMessage = document.createElement("small");
-    errorMessage.innerHTML = "Veuillez entrer un email valide.";
-    errorMessage.style.color = "red";
-    formData[2].appendChild(errorMessage);
+    errMssg("Veuillez entrer un mail valide.", 2);
   }
 }
 
+//fonction pour verifier la date de naissance
 function dateVerification() {
   if (date.value == "") {
-    console.log(date.value);
-    const errorMessage = document.createElement("small");
-    errorMessage.innerHTML = "</br> Vous devez entrer votre date de naissance.";
-    errorMessage.style.color = "red";
-    formData[3].appendChild(errorMessage);
+    errMssg("Veuillez entrer votre date de naissance.", 3);
   } else {
     return true;
   }
 }
 
+//fonction pour verifier le nombre d'evenement
 function quantityVerification() {
   if (/^[0-9]$|^[1-9][0-9]$|^(99)$/.test(quantity.value)) {
     return true;
   } else {
-    const errorMessage = document.createElement("small");
-    errorMessage.innerHTML = "</br> Veuillez entrer un nombre.";
-    errorMessage.style.color = "red";
-    formData[4].appendChild(errorMessage);
+    errMssg("Veuillez entrer un nombre.", 4);
   }
 }
 
+//fonction pour verifier la ville
 function radioVerification() {
-  if (
-    !radio[0].checked &&
-    !radio[1].checked &&
-    !radio[2].checked &&
-    !radio[3].checked &&
-    !radio[4].checked &&
-    !radio[5].checked
-  ) {
-    const errorMessage = document.createElement("small");
-    errorMessage.innerHTML = "</br>Vous devez choisir une option.";
-    errorMessage.style.color = "red";
-    formData[5].appendChild(errorMessage);
-  } else {
-    return true;
+  for (let i in radio) {
+    if (!radio[i].checked) {
+      errMssg("Vous devez choisir une option.", 5);
+    } else {
+      return true;
+    }
   }
 }
 
+//fonction pour verifier les conditions d'utilisation
 function conditionVerification() {
   if (!conditionBox.checked) {
-    const errorMessage = document.createElement("small");
-    errorMessage.innerHTML =
-      "</br> Vous devez vérifier que vous acceptez les termes et conditions.";
-    errorMessage.style.color = "red";
-    formData[6].appendChild(errorMessage);
+    errMssg(
+      "Vous devez vérifier que vous acceptez les termes et conditions.",
+      6
+    );
   } else {
     return true;
   }
 }
 
+//fonction pour verification des champs et affichier l'ecran de finalisation
 function displayMessage() {
   if (
     firstVerification() &&
@@ -145,6 +133,7 @@ function displayMessage() {
   }
 }
 
+// Fonction pour valider le formulaire
 function validate(event) {
   if (displayMessage() == true) {
     event.currentTarget.submit();
