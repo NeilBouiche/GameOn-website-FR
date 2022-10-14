@@ -38,6 +38,11 @@ const quantity = document.getElementById("quantity");
 const radio = document.querySelectorAll("input[type=radio]");
 const conditionBox = document.getElementById("checkbox1");
 const errorMessage = document.createElement("small");
+const reserve = document.getElementById("reserve");
+
+reserve.addEventListener("submit", (e) => {
+  e.preventDefault();
+});
 
 //error message function
 function errMssg(sentance, formDataNumber) {
@@ -117,7 +122,7 @@ function conditionVerification() {
 }
 
 //fonction pour verification des champs et affichier l'ecran de finalisation
-function displayMessage() {
+function displayMessage(event) {
   if (
     firstVerification() &&
     lastVerification() &&
